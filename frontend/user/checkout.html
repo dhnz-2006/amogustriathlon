@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="content">
+    <h2>Checkout</h2>
+    <div id="cartItems"></div>
+    <input id="email" type="email" placeholder="Enter email">
+    <input id="card" type="text" placeholder="Card Number">
+
+    <button onclick="placeOrder()"style="color:rgb(0, 0, 0)">Pay</button>
+    <p>Total: ₹<span id="grandTotal">0</span></p>
+    <a href="cart.html">Back to Cart</a>
+</div>
+
+<script>
+    const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let total = 0;
+    const itemsContainer = document.getElementById("cartItems");
+
+    cart.forEach(item => {
+        const priceWithFee = item.price;
+        total += priceWithFee;
+        itemsContainer.innerHTML += `<p>${item.name || 'Product'}: ₹${priceWithFee}</p>`;
+    });
+    document.getElementById("grandTotal").innerText = total;
+</script>
+<script src="../js/app.js"></script>
+</body>
+</html>

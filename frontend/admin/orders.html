@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="navbar">
+  <h2 font-color="white">Admin</h2>
+<a href="dashboard.html">Dashboard</a>
+<a href="products.html">Products</a>
+</div>
+<div id="orders"></div>
+
+<script>
+fetch("http://localhost:5000/api/orders")
+.then(r => r.json())
+.then(d => {
+  d.forEach(o => {
+    document.body.innerHTML += o.name + " " + o.card;
+  });
+});
+</script>
+
+</body>
+</html>

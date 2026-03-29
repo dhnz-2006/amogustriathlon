@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+<div class="navbar">
+  <h2 font-color="white">Admin</h2>
+<a href="products.html">Products</a>
+<a href="orders.html">Orders</a>
+</div>
+<script src="../js/app.js"></script>
+
+<script>
+checkAdmin("admin");
+
+fetch("http://localhost:5000/api/products")
+.then(r => r.json())
+.then(d => document.body.innerHTML += d.map(p => `
+  <div class="center-box">
+    <h4>${p.name}</h4>
+    <p>₹${p.price}</p>
+  </div>
+`).join(""));
+</script>
+
+</body>
+</html>
